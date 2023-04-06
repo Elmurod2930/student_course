@@ -1,0 +1,9 @@
+### student_course_mark created
+POST localhost:8081/StudentCourseMark/create
+Content-Type: application/json
+//id,name,price,duration,createdDate
+
+{
+  "student_id": 4,
+  "course_id": 1
+}

@@ -80,10 +80,10 @@ public class StudentController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/getByGivenDateBetween/{fromDate,todate}")
-    public ResponseEntity<List<StudentDTO>> getByGender(@PathVariable LocalDateTime fromDate, @PathVariable LocalDateTime toDate) {
-        List<StudentDTO> list = studentService.getByCreatedDateBetween(fromDate, toDate);
-        return ResponseEntity.ok(list);
-    }
+//    @GetMapping("/getByGivenDateBetween/{fromDate,toDate}")
+//    public ResponseEntity<List<StudentDTO>> getByGender(@PathVariable LocalDateTime fromDate, @PathVariable LocalDateTime toDate) {
+//        List<StudentDTO> list = studentService.getByCreatedDateBetween(fromDate, toDate);
+//        return ResponseEntity.ok(list);
+//    }
 
 }

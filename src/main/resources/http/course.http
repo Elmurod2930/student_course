@@ -1,0 +1,10 @@
+### course created
+POST localhost:8081/course/create
+Content-Type: application/json
+//id,name,price,duration,createdDate
+
+{
+  "name": "ss",
+  "price": 1234,
+  "duration": 1
+}
