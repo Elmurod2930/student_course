@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "Student_course_mark")
+@Entity
+@Table(name = "Student_course_mark")
 public class StudentCourseMarkEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,4 +25,10 @@ public class StudentCourseMarkEntity {
     private Integer mark;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
+
+    public StudentCourseMarkEntity(String id, StudentEntity student, CourseEntity course) {
+        this.id = id;
+        this.student = student;
+        this.course = course;
+    }
 }
