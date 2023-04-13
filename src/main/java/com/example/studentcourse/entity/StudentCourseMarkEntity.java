@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class StudentCourseMarkEntity {
     @Column(name = "mark")
     private Integer mark;
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     public StudentCourseMarkEntity(String id, StudentEntity student, CourseEntity course) {
         this.id = id;

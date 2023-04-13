@@ -1,9 +1,93 @@
 ### student_course_mark created
-POST localhost:8081/StudentCourseMark/create
+POST localhost:8081/studentCourseMark/create
 Content-Type: application/json
 //id,name,price,duration,createdDate
 
 {
-  "student_id": 4,
+  "student_id": 3,
+  "course_id": 2,
+  "mark": 4
+}
+
+### student_course_mark UPDATE
+
+PUT localhost:8081/studentCourseMark/update/e640ce34-2e2b-4a91-934c-71d597621e4b
+Content-Type: application/json
+
+{
+  "student_id": 2,
   "course_id": 1
+}
+
+### Get student_course_mark by id
+GET localhost:8081/studentCourseMark/getById/e640ce34-2e2b-4a91-934c-71d597621e4b
+
+### get all student_course_mark
+GET localhost:8081/studentCourseMark/getAll
+
+### delete student_course_mark
+DELETE localhost:8081/studentCourseMark/delete/748109d2-0d6c-46e5-8ce8-35deb94356aa
+
+### get mark by date
+GET localhost:8081/studentCourseMark/getMarkByDate?date=2023-04-12&id=3
+
+### get student mark by date between
+GET localhost:8081/studentCourseMark/getByDateBetween?id=2&fromDate=2023-04-10&toDate=2023-04-12
+
+### get By Student Mark DateDesc
+GET localhost:8081/studentCourseMark/getByStudentMarkDesc/2
+
+### get by student mark DateDesc
+GET localhost:8081/studentCourseMark/getByStudentCourseMarkDateDesc?studentId=3&courseId=3
+
+### get student last mark
+GET localhost:8081/studentCourseMark/getStudentLastMark/3
+
+### get Student 3 Bigger Mark
+GET localhost:8081/studentCourseMark/getStudent3BiggerMark/3
+
+### get Student First Mark
+GET localhost:8081/studentCourseMark/getStudentFirstMark/2
+
+### get Student course First Mark
+GET localhost:8081/studentCourseMark/getStudentCourseFirstMark?sId=3&cId=2
+
+### get Student course bigger Mark
+GET localhost:8081/studentCourseMark/getStudentCourseBiggestMark?sId=3&cId=3
+
+### get student avg mark
+GET localhost:8081/studentCourseMark/getStudentAvgMark/3
+
+### get student course avg mark
+GET localhost:8081/studentCourseMark/getStudentCourseAvgMark?studentId=3&courseId=1
+
+### get student count mark
+GET localhost:8081/studentCourseMark/getStudentCountMark?studentId=3&mark=5
+
+### get course max rank
+GET localhost:8081/studentCourseMark/getCourseMaxMark/3
+
+### get course avg mark
+GET localhost:8081/studentCourseMark/getCourseAvgMark/3
+
+### get course count mark
+GET localhost:8081/studentCourseMark/getCourseCountMark/8
+
+### Student Course mark pagination
+GET localhost:8081/studentCourseMark/paging?page=2&size=6
+
+### Student Course mark pagination with name
+POST localhost:8081/studentCourseMark/paging-studentId?page=1&size=6
+Content-Type:  application/json
+
+{
+  "studentId": 4
+}
+
+### Student Course mark pagination with level
+POST localhost:8081/studentCourseMark/paging-courseId?page=1&size=6
+Content-Type:  application/json
+
+{
+  "courseId": 2
 }

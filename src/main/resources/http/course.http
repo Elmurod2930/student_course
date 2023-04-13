@@ -8,3 +8,23 @@ Content-Type: application/json
   "price": 1234,
   "duration": 1
 }
+
+### Course pagination
+GET localhost:8081/course/paging?page=1&size=6
+
+### Course pagination with price
+POST localhost:8081/course/paging-price?page=1&size=6
+Content-Type:  application/json
+
+{
+  "price": 2
+}
+
+### Course pagination with price between
+POST localhost:8081/course/paging-price?page=1&size=6
+Content-Type:  application/json
+
+{
+  "fromPrice": 1234,
+  "toPrice": 1234566
+}

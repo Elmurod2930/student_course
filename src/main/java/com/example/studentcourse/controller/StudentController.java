@@ -1,9 +1,11 @@
 package com.example.studentcourse.controller;
 
 import com.example.studentcourse.dto.StudentDTO;
+import com.example.studentcourse.dto.StudentFilterRequestDTO;
 import com.example.studentcourse.entity.enums.StudentGender;
 import com.example.studentcourse.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -80,10 +82,38 @@ public class StudentController {
         return ResponseEntity.ok(list);
     }
 
-//    @GetMapping("/getByGivenDateBetween/{fromDate,toDate}")
-//    public ResponseEntity<List<StudentDTO>> getByGender(@PathVariable LocalDateTime fromDate, @PathVariable LocalDateTime toDate) {
-//        List<StudentDTO> list = studentService.getByCreatedDateBetween(fromDate, toDate);
-//        return ResponseEntity.ok(list);
-//    }
+    @GetMapping(value = "/paging")
+    public ResponseEntity<Page<StudentDTO>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                   @RequestParam(value = "size", defaultValue = "30") int size) {
+        Page<StudentDTO> response = studentService.pagination(page, size);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = "/paging-name")
+    public ResponseEntity<Page<StudentDTO>> pagingWithName(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                           @RequestParam(value = "size", defaultValue = "30") int size,
+                                                           @RequestBody StudentFilterRequestDTO filter) {
+        Page<StudentDTO> response = studentService.paginationWithName(filter.getName(), page, size);
+        return ResponseEntity.ok(response);
+    }
+
+    // 10
+    @PostMapping(value = "/paging-level")
+    public ResponseEntity<Page<StudentDTO>> pagingWithLevel(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                            @RequestParam(value = "size", defaultValue = "30") int size,
+                                                            @RequestBody StudentFilterRequestDTO filter) {
+        Page<StudentDTO> response = studentService.paginationWithLevel(filter.getLevel(), page, size);
+        return ResponseEntity.ok(response);
+    }
+
+    // 11
+    @PostMapping(value = "/paging-gender")
+    public ResponseEntity<Page<StudentDTO>> pagingWithGender(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                            @RequestParam(value = "size", defaultValue = "30") int size,
+                                                            @RequestBody StudentFilterRequestDTO filter) {
+        Page<StudentDTO> response = studentService.paginationWithGender(filter.getGender(), page, size);
+        return ResponseEntity.ok(response);
+    }
+
 
 }

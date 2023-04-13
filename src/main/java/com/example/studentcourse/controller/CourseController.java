@@ -1,12 +1,14 @@
 package com.example.studentcourse.controller;
 
 import com.example.studentcourse.dto.CourseDTO;
+import com.example.studentcourse.dto.CourseFilterRequestDTO;
+import com.example.studentcourse.dto.CourseFilterRequestPriceBetweenDTO;
 import com.example.studentcourse.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -61,15 +63,25 @@ public class CourseController {
         return ResponseEntity.ok(courseDTOList);
     }
 
-//    @GetMapping("/getByDateBetween/{fromDate,toDate}")
-//    public ResponseEntity<?> getByDateBetween(@PathVariable LocalDateTime fromDate, @PathVariable LocalDateTime toDate) {
-//        List<CourseDTO> courseDTOList = courseService.getByDateBetween(fromDate, toDate);
-//        return ResponseEntity.ok(courseDTOList);
-//    }
+    @GetMapping(value = "/paging")
+    public ResponseEntity<Page<CourseDTO>> paging(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                  @RequestParam(value = "size", defaultValue = "30") int size) {
+        Page<CourseDTO> response = courseService.pagination(page, size);
+        return ResponseEntity.ok(response);
+    }
 
-//    @GetMapping("/getByPriceBetween/{fromPrice,toPrice}")
-//    public ResponseEntity<?> getByDuration(@PathVariable Integer fromPrice, @PathVariable Integer toPrice) {
-//        List<CourseDTO> courseDTOList = courseService.getByPriceBetween(fromPrice, toPrice);
-//        return ResponseEntity.ok(courseDTOList);
-//    }
+    @PostMapping("/paging-price")
+    public ResponseEntity<Page<CourseDTO>> pagingWithPrice(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                           @RequestParam(value = "size", defaultValue = "30") int size,
+                                                           @RequestBody CourseFilterRequestDTO filter) {
+        Page<CourseDTO> response = courseService.paginationWithPrice(filter.getPrice(), page, size);
+        return ResponseEntity.ok(response);
+    }
+    @PostMapping("/paging-priceBetween")
+    public ResponseEntity<Page<CourseDTO>> pagingWithPriceBetween(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                           @RequestParam(value = "size", defaultValue = "30") int size,
+                                                           @RequestBody CourseFilterRequestPriceBetweenDTO filter) {
+        Page<CourseDTO> response = courseService.paginationWithPriceBetween(filter.getFromPrice(),filter.getToPrice(), page, size);
+        return ResponseEntity.ok(response);
+    }
 }

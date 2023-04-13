@@ -30,3 +30,24 @@ DELETE localhost:8081/student/delete/1
 
 ### student get by name
 GET localhost:8081/student/getByName/dd
+
+### Student pagination
+GET localhost:8081/student/paging?page=2&size=6
+
+### Student pagination with name
+POST localhost:8081/student/paging-name?page=1&size=6
+Content-Type:  application/json
+
+{
+  "name": "aaa",
+  "level": 2,
+  "gender": "MALE"
+}
+
+### Student pagination with level
+POST localhost:8081/student/paging-level?page=1&size=6
+Content-Type:  application/json
+
+{
+  "level": 2
+}
